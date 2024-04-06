@@ -6,9 +6,9 @@ const runMessage = document.getElementById('run-message')
 fetchCode.textContent = fetchCode.textContent.replace('http:', location.protocol)
 
 runScriptBtn.addEventListener('click',()=>{
-    var root = location.protocol + '//localhost:9001'
+    var root = location.protocol + '//localhost:3000'
 
-    fetch('http://localhost:9001/users/1')
+    fetch('http://localhost:3000/users/1')
       .then((response) => response.json())
       .then((json) => {
         var str = JSON.stringify(json, null, '  ')

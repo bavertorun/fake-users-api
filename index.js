@@ -16,6 +16,8 @@ app.use(express.json())
 app.use('/users',users)
 app.use('/',home)
 
+const port = process.env.PORT || 3000
 
-app.listen(9001,()=> console.log("Server OK"))
+
+app.listen(port,()=> console.log(`Lİstening port on ${port}`))
 

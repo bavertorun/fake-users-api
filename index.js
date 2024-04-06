@@ -19,5 +19,7 @@ app.use('/',home)
 const port = process.env.PORT || 3000
 
 
-app.listen(port,()=> console.log(`Lİstening port on ${port}`))
+app.listen(port,()=> {
+    console.log(`Lİstening port on ${port}`)
+})
 

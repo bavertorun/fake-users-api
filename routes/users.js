@@ -12,15 +12,15 @@ router.get('/',(req,res)=>{
         result = result.filter(user => user[key] == val)
     }
     
-    res.send(result)
+    res.json(result)
 })
 router.get('/:id',(req,res)=>{
     const user = users.find(user => user.id == req.params.id)
     if(!user){
-        return res.status(404).send({error: 'There is no such user..',statusCode: 404})
+        return res.status(404).json({error: 'There is no such user..',statusCode: 404})
     }
 
-    res.send(user)
+    res.json(user)
 
 })
 
@@ -29,7 +29,7 @@ router.post('/',(req,res)=>{
     const { error } = validateUser(req.body)
 
     if(error){
-        return res.status(404).send({error: error.details[0].message,statusCode: 404})
+        return res.status(404).json({error: error.details[0].message,statusCode: 404})
     }
 
     const user = {
@@ -43,7 +43,7 @@ router.post('/',(req,res)=>{
     }
 
     users.push(user)
-    res.send(user)
+    res.json(user)
 })
 
 router.put('/:id',(req,res)=>{
@@ -53,7 +53,7 @@ router.put('/:id',(req,res)=>{
     const { error } = validateUser(req.body)
 
     if(error){
-        return res.status(404).send({error: error.details[0].message, statusCode:404})
+        return res.status(404).json({error: error.details[0].message, statusCode:404})
     }
 
         user.name = req.body.name
@@ -63,7 +63,7 @@ router.put('/:id',(req,res)=>{
         user.phone = req.body.phone
         user.address = req.body.address
 
-        res.send(user)
+        res.json(user)
     
 
 })
@@ -73,12 +73,12 @@ router.delete('/:id',(req,res)=>{
     const user = users.find(user=>user.id == req.params.id)
         
     if(!user){
-        return res.status(404).send({error: 'There is no such user..', statusCode:404})
+        return res.status(404).json({error: 'There is no such user..', statusCode:404})
     }
 
     const index = users.indexOf(user)
     users.splice(index,1)
-    res.send(user)
+    res.json(user)
 
 
 })
@@ -97,13 +97,13 @@ router.patch('/:id',(req,res)=>{
     const { error } = schema.validate(req.body)
 
     if(error){
-        return res.status(400).send({error: error.details[0].message,statusCode: 400 })
+        return res.status(400).json({error: error.details[0].message,statusCode: 400 })
     }
 
     for(const k in req.body){
         user[k] = req.body[k]
     }
-    res.send(user)
+    res.json(user)
 
 })
 
